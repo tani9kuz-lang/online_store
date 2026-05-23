@@ -28,7 +28,6 @@ public class ProductBasket {
         }
     }
 
-
     //Метод получения общей стоимости корзины
     public int totalPriceBasket() {
         int total = 0;
