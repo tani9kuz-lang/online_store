@@ -59,9 +59,10 @@ public class ProductBasket {
 
     // проверяющий продукт в корзине по имени
     public boolean searchInBasket(String productName) {
-        if(this.count ==0){
-            return false;}
-            for (Product product : products) {
+        if (this.count == 0) {
+            return false;
+        }
+        for (Product product : products) {
             if (product.getProductName().equals(productName)) {
                 return true;
             }

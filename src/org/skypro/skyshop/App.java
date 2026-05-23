@@ -15,7 +15,6 @@ public class App {
         Product product5 = new Product("Наушники безпроводные", 5900);
         Product product6 = new Product("Мышка безпроводная", 678);
 
-
         productBasket1.addProduct(product1);
         productBasket1.addProduct(product2);
         productBasket1.addProduct(product3);
