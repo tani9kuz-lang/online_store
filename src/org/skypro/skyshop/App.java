@@ -37,13 +37,11 @@ public class App {
         productBasket1.clearBasket();
 
         DiscountedProduct product7 = new DiscountedProduct("Телефон", 12000, 12);
-        FixPriceProduct product8 = new FixPriceProduct("Зарядка без проводная");
+        FixPriceProduct product8 = new FixPriceProduct("Зарядка безпроводная");
 
         productBasket1.addProduct(product7);
-
         productBasket1.addProduct(product8);
-        productBasket1.showBasket();
-
+        productBasket1.printProductBasket();
 
 
 
