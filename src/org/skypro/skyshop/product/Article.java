@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
- public  class Article implements Searchable {
+public class Article implements Searchable {
     private final String titleArticle;
     private final String textArticle;
 
@@ -15,12 +15,13 @@ package org.skypro.skyshop.product;
         return titleArticle + textArticle;
     }
 
-
-    public String searchTerm(){
+    @Override
+    public String searchTerm() {
         return toString();
     }
 
-    public String getOfTypeContent(){
+    @Override
+    public String getOfTypeContent() {
         return "ARTICLE";
     }
 }
