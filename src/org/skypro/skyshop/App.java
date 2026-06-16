@@ -46,15 +46,17 @@ public class App {
         Article post3 = new Article("Новинки", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
         Article post4 = new Article("Обзор на iPhone 17 Pro", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
 
+
         searchEngine.add(post1);
         searchEngine.add(product1);
         searchEngine.add(post3);
         searchEngine.add(product2);
         searchEngine.add(product4);
 
-        searchEngine.search("Новинки");
-
-
+        Searchable[] searchables = searchEngine.search("Новинки");
+        for (Searchable searchable: searchables){
+            System.out.println(searchable);
+        }
 
     }
 }

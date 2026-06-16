@@ -14,7 +14,7 @@ public class SearchEngine {
         int i = 0;
         for (Searchable element : searchables) {
             if (element != null) {
-                if (element.searchTerm().equals(searchInput)) {
+                if (element.searchTerm().contains(searchInput)) {
                     result[i] = element;
                     i++;
 
