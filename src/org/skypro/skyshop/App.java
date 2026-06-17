@@ -52,6 +52,7 @@ public class App {
         searchEngine.add(post3);
         searchEngine.add(product2);
         searchEngine.add(product4);
+        searchEngine.add(post4);
 
         Searchable[] searchables = searchEngine.search("Новинки");
         for (Searchable searchable: searchables){
