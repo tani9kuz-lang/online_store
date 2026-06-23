@@ -6,6 +6,8 @@ import org.skypro.skyshop.product.search.BestResultNotFound;
 import org.skypro.skyshop.product.search.SearchEngine;
 import org.skypro.skyshop.product.search.Searchable;
 
+import java.util.List;
+
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
@@ -23,6 +25,12 @@ public class App {
         productBasket1.addProduct(product4);
         productBasket1.addProduct(product5);
         productBasket1.addProduct(product6);
+
+        productBasket1.showBasket();
+        System.out.println("Демонстрация удаления товара");
+
+        List<Product> removedItems = productBasket1.removeProductsByName("Планшет");
+        productBasket1.showBasket();
 
         productBasket1.totalPriceBasket();
         productBasket1.showBasket();
@@ -57,11 +65,21 @@ public class App {
         searchEngine.add(product4);
         searchEngine.add(post4);
 
+        String searchQuery = "iPhone";
+        System.out.println("Поиск по запросу: \"" + searchQuery + "\"");
 
-        Searchable[] searchables = searchEngine.search("Новинки");
-        for (Searchable searchable : searchables) {
-            System.out.println(searchable);
+
+        List<Searchable> foundItems = searchEngine.search(searchQuery);
+
+        if (foundItems.isEmpty()) {
+            System.out.println("Ничего не найдено.");
+        } else {
+            for (Searchable item : foundItems) {
+                System.out.println("- Найден: " + item);
+            }
+            System.out.println("Всего найдено: " + foundItems.size() + " элементов.");
         }
+        System.out.println();
 
 
         try {

@@ -1,42 +1,41 @@
 package org.skypro.skyshop.product.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchEngine {
-    private Searchable[] searchables;
+    private List<Searchable> searchables;
+
 
     public SearchEngine(int size) {
-        this.searchables = new Searchable[size];
+        this.searchables = new ArrayList<>(size);
     }
 
-    public Searchable[] search(String searchInput) {
-        Searchable[] result = new Searchable[5];
-        int i = 0;
-        for (Searchable element : searchables) {
-            if (element != null) {
-                if (element.searchTerm().contains(searchInput)) {
-                    result[i] = element;
-                    i++;
+    public List<Searchable> search(String searchInput) {
+        List<Searchable> result = new ArrayList<>();
+        if (searchInput == null || searchInput.isBlank()) {
+            return result;
+        }
 
-                }
-                if (i > 5) {
-                    break;
-                }
+        for (Searchable element : searchables) {
+            if (element != null && element.searchTerm().contains(searchInput)) {
+                result.add(element);
             }
         }
+
         return result;
+
 
     }
 
     public void add(Searchable newSearchable) {
-        for (int i = 0; i < searchables.length; i++) {
-            if (searchables[i] == null) {
-                searchables[i] = newSearchable;
-                break;
-            }
+        if (newSearchable != null) {
+            searchables.add(newSearchable);
         }
     }
 
     public Searchable findBestMatch(String searchInput) throws BestResultNotFound {
-        if (searchInput.isBlank()) {
+        if (searchInput == null || searchInput.isBlank()) {
             throw new BestResultNotFound("По вашему запросу '" + searchInput + "' ничего не найдено");
         }
         Searchable searchable = null;
