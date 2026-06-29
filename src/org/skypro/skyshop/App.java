@@ -65,14 +65,15 @@ public class App {
         searchEngine.add(product4);
         searchEngine.add(post4);
 
-        String searchQuery = "iPhone";
+        //Поиск по запросу
+        String searchQuery = "Машина";
         System.out.println("Поиск по запросу: \"" + searchQuery + "\"");
 
 
         List<Searchable> foundItems = searchEngine.search(searchQuery);
 
         if (foundItems.isEmpty()) {
-            System.out.println("Ничего не найдено.");
+            System.out.println("Список пуст");
         } else {
             for (Searchable item : foundItems) {
                 System.out.println("- Найден: " + item);
@@ -82,6 +83,7 @@ public class App {
         System.out.println();
 
 
+        //Исключения
         try {
             DiscountedProduct product9 = new DiscountedProduct("Телефон Samsung", 1200, -10);
 
