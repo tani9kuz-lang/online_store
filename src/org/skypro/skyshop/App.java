@@ -7,6 +7,7 @@ import org.skypro.skyshop.product.search.SearchEngine;
 import org.skypro.skyshop.product.search.Searchable;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class App {
@@ -70,15 +71,16 @@ public class App {
         System.out.println("Поиск по запросу: \"" + searchQuery + "\"");
 
 
-        List<Searchable> foundItems = searchEngine.search(searchQuery);
+        Map<String, Searchable> foundItems = searchEngine.search(searchQuery);
 
         if (foundItems.isEmpty()) {
             System.out.println("Список пуст");
         } else {
-            for (Searchable item : foundItems) {
-                System.out.println("- Найден: " + item);
+            for (Map.Entry<String, Searchable> entry : foundItems.entrySet()) {
+                String name = entry.getKey();
+                Searchable searchable = entry.getValue();
+                System.out.println("Всего найдено: " + foundItems.size() + " элементов.");
             }
-            System.out.println("Всего найдено: " + foundItems.size() + " элементов.");
         }
         System.out.println();
 

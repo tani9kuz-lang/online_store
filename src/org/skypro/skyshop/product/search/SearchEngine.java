@@ -1,25 +1,23 @@
 package org.skypro.skyshop.product.search;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
     private List<Searchable> searchables;
-
 
     public SearchEngine(int size) {
         this.searchables = new ArrayList<>(size);
     }
 
-    public List<Searchable> search(String searchInput) {
-        List<Searchable> result = new ArrayList<>();
+    public Map<String, Searchable> search(String searchInput) {
+        Map<String, Searchable> result = new TreeMap<>();
         if (searchInput == null || searchInput.isBlank()) {
             return result;
         }
 
         for (Searchable element : searchables) {
             if (element != null && element.searchTerm().contains(searchInput)) {
-                result.add(element);
+                result.put(element.searchTerm(), element);
             }
         }
 
