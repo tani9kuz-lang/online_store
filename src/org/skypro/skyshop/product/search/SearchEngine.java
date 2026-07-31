@@ -3,21 +3,28 @@ package org.skypro.skyshop.product.search;
 import java.util.*;
 
 public class SearchEngine {
-    private List<Searchable> searchables;
+    private Set<Searchable>  searchables = new HashSet<>();
 
     public SearchEngine(int size) {
-        this.searchables = new ArrayList<>(size);
+        this.searchables = new HashSet<>(size);
     }
 
-    public Map<String, Searchable> search(String searchInput) {
-        Map<String, Searchable> result = new TreeMap<>();
+    public Set<Searchable> search(String searchInput) {
+        Set<Searchable> result = new TreeSet<>((s1, s2)->{
+            // получаем длину названия и сравниваем
+            int lengthCompare  = Integer.compare(s2.searchTerm().length(), s1.searchTerm().length());
+            if (lengthCompare == 0){
+                return s1.searchTerm().compareTo(s2.searchTerm());
+            }
+            return lengthCompare;
+        });
         if (searchInput == null || searchInput.isBlank()) {
             return result;
         }
 
         for (Searchable element : searchables) {
             if (element != null && element.searchTerm().contains(searchInput)) {
-                result.put(element.searchTerm(), element);
+                result.add(element);
             }
         }
 

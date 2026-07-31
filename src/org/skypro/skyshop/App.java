@@ -8,6 +8,7 @@ import org.skypro.skyshop.product.search.Searchable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 public class App {
@@ -19,6 +20,7 @@ public class App {
         SimpleProduct product4 = new SimpleProduct("Чехол для планшета", 1050);
         SimpleProduct product5 = new SimpleProduct("Наушники безпроводные", 5900);
         SimpleProduct product6 = new SimpleProduct("Мышка безпроводная", 678);
+        SimpleProduct product17 = new SimpleProduct("Планшет", 26567);
 
         productBasket1.addProduct(product1);
         productBasket1.addProduct(product2);
@@ -26,6 +28,7 @@ public class App {
         productBasket1.addProduct(product4);
         productBasket1.addProduct(product5);
         productBasket1.addProduct(product6);
+        productBasket1.addProduct(product17);
 
         productBasket1.showBasket();
         System.out.println("Демонстрация удаления товара");
@@ -55,7 +58,7 @@ public class App {
 
         Article post1 = new Article("Сравнение iPhone 15 и iPhone 16", "Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consecteturadipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
         Article post2 = new Article("Как выбрать наушники", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
-        Article post3 = new Article("Новинки", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
+        Article post3 = new Article("Планшет", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
         Article post4 = new Article("Обзор на iPhone 17 Pro", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
 
 
@@ -67,44 +70,46 @@ public class App {
         searchEngine.add(post4);
 
         //Поиск по запросу
-        String searchQuery = "Машина";
+        String searchQuery = "Планшет";
         System.out.println("Поиск по запросу: \"" + searchQuery + "\"");
 
 
-        Map<String, Searchable> foundItems = searchEngine.search(searchQuery);
+        Set<Searchable> foundItems = searchEngine.search(searchQuery);
 
         if (foundItems.isEmpty()) {
             System.out.println("Список пуст");
         } else {
-            for (Map.Entry<String, Searchable> entry : foundItems.entrySet()) {
-                String name = entry.getKey();
-                Searchable searchable = entry.getValue();
-                System.out.println("Всего найдено: " + foundItems.size() + " элементов.");
+            System.out.println("Всего найдено: " + foundItems.size() + " элементов.");
+
+            for (Searchable element : foundItems) {
+                System.out.println(element.searchTerm() + " — " + element.getOfTypeContent());
             }
         }
-        System.out.println();
 
 
         //Исключения
         try {
             DiscountedProduct product9 = new DiscountedProduct("Телефон Samsung", 1200, -10);
 
-        } catch (IllegalArgumentException e) {
+        } catch (
+                IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
 
         try {
             DiscountedProduct product10 = new DiscountedProduct("Телефон Honor", -120, 10);
 
-        } catch (IllegalArgumentException e) {
+        } catch (
+                IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
 
-        Article post5= new Article("Сравнение iPhone 15 и iPhone 16", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
+        Article post5 = new Article("Сравнение iPhone 15 и iPhone 16", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
         searchEngine.add(post5);
         try {
             System.out.println(searchEngine.findBestMatch(" "));
-        }catch (BestResultNotFound e){
+        } catch (
+                BestResultNotFound e) {
             System.out.println(e.getMessage());
         }
 
